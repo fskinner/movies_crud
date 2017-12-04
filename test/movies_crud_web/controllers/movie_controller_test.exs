@@ -5,7 +5,7 @@ defmodule MoviesCrudWeb.MovieControllerTest do
 
   @create_attrs %{description: "some description", genre: "some genre", title: "some title"}
   @update_attrs %{description: "some updated description", genre: "some updated genre", title: "some updated title"}
-  @invalid_attrs %{description: nil, genre: nil, title: nil}
+  @invalid_attrs %{genre: nil, title: nil}
 
   def fixture(:movie) do
     {:ok, movie} = MovieCrud.create_movie(@create_attrs)
@@ -60,7 +60,7 @@ defmodule MoviesCrudWeb.MovieControllerTest do
       assert redirected_to(conn) == movie_path(conn, :show, movie)
 
       conn = get conn, movie_path(conn, :show, movie)
-      assert html_response(conn, 200) =~ "some updated description"
+      assert html_response(conn, 200) =~ "some updated title"
     end
 
     test "renders errors when data is invalid", %{conn: conn, movie: movie} do

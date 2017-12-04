@@ -8,7 +8,7 @@ defmodule MoviesCrud.MovieCrudTest do
 
     @valid_attrs %{description: "some description", genre: "some genre", title: "some title"}
     @update_attrs %{description: "some updated description", genre: "some updated genre", title: "some updated title"}
-    @invalid_attrs %{description: nil, genre: nil, title: nil}
+    @invalid_attrs %{genre: nil, title: nil}
 
     def movie_fixture(attrs \\ %{}) do
       {:ok, movie} =
@@ -31,7 +31,7 @@ defmodule MoviesCrud.MovieCrudTest do
 
     test "create_movie/1 with valid data creates a movie" do
       assert {:ok, %Movie{} = movie} = MovieCrud.create_movie(@valid_attrs)
-      assert movie.description == "some description"
+      assert movie.description == nil
       assert movie.genre == "some genre"
       assert movie.title == "some title"
     end
@@ -44,7 +44,7 @@ defmodule MoviesCrud.MovieCrudTest do
       movie = movie_fixture()
       assert {:ok, movie} = MovieCrud.update_movie(movie, @update_attrs)
       assert %Movie{} = movie
-      assert movie.description == "some updated description"
+      assert movie.description == nil
       assert movie.genre == "some updated genre"
       assert movie.title == "some updated title"
     end
